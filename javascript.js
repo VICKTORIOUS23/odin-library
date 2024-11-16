@@ -4,7 +4,9 @@ const topBar = document.createElement('div');
     topBar.classList.add('top-bar');
 const newBookButton = document.createElement("button");
     newBookButton.classList.add('newBookBtn');
+    newBookButton.setAttribute('id', 'addBookBtn');
     newBookButton.textContent = "New Book";
+
 topBar.appendChild(newBookButton);
 container.appendChild(topBar);
 
@@ -22,12 +24,16 @@ myLibrary.push(testbook);
 myLibrary.push(testbook2);
 myLibrary.push(testbook3);
 
-function addBookToLibrary() {
+function addBookToLibrary(title, author, pages, read) {
     let createBook = new Book(title, author, pages, read);
         myLibrary.push(createBook);   
 }
 
 function newBookCard() {
+    container.innerHTML = "";
+    topBar.appendChild(newBookButton);
+    container.appendChild(topBar);
+
     for (i=0; i < myLibrary.length; i++) {
         const newCard = document.createElement("div");
             newCard.classList.add('card');
@@ -49,5 +55,56 @@ function newBookCard() {
         }
 }
 
+
+
+document.getElementById('addBookBtn').addEventListener("click", () => addBookWindow());
+
+
+function addBookWindow() {
+    const newBookBg = document.createElement('div');
+        newBookBg.setAttribute('id', 'new-book-layout');
+        newBookBg.classList.add('new-book-window-container');
+    const newBookWindow = document.createElement('div');
+        newBookWindow.classList.add('new-book-window');
+    const titleInput = document.createElement('input');
+        titleInput.classList.add('book-input');
+        titleInput.setAttribute('id', 'title-input');
+    const authorInput = document.createElement('input');
+        authorInput.classList.add('book-input');
+        authorInput.setAttribute('id', 'author-input');
+    const pagesInput = document.createElement('input');
+        pagesInput.classList.add('book-input');
+        pagesInput.setAttribute('id', 'pages-input');
+    const submitBtn = document.createElement('button');
+        submitBtn.setAttribute('id', 'submit-new-book');
+        submitBtn.textContent = "Submit New Book";
+    const newTitle = document.getElementById('title-input');
+
+    
+
+        
+        newBookWindow.appendChild(titleInput);
+        newBookWindow.appendChild(authorInput);
+        newBookWindow.appendChild(pagesInput);
+        newBookWindow.appendChild(submitBtn);
+        newBookBg.appendChild(newBookWindow);
+        container.appendChild(newBookBg);
+
+        document.getElementById('submit-new-book').addEventListener("click", () => {
+            
+            addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, false);
+            newBookCard();
+            container.removeChild(newBookBg);
+            
+            
+            
+        });
+}
+
 newBookCard();
+
+
+
+
+
 

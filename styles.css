@@ -1,3 +1,28 @@
+.new-book-window-container {
+    backdrop-filter: blur(6px);
+    height:100%;
+    width:100%;
+    position:absolute;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.new-book-window {
+    height:600px;
+    width:400px;
+    background-color:#2d2a2a;
+    color:#e3ddd1;
+    align-self:center;
+    border-radius:10px;
+    box-shadow:inset 0 0 20px rgb(265 265 265 / 40%);
+    border:solid 2px #2d2a2a;
+    justify-content:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
 .card {
     background-color:#e3ddd1;
     display:flex;
